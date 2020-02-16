@@ -1,0 +1,19 @@
+name: Create a gipr release pull request
+
+on:
+  push:
+    branches:
+      - develop
+      - master
+
+
+jobs:
+  giprdraft:
+    name: giprdraft pr
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Slack Notification
+      uses: hayashiki/git-issue-release@v1.0.1
+      env:
+        HOGE: "hoge"
