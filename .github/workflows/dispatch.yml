@@ -1,0 +1,17 @@
+name: Sync files
+
+on:
+  repository_dispatch:
+  push:
+    branches:
+      - "dispatch-test"
+
+jobs:
+  rest_dispatch:
+    runs-on: ubuntu-latest
+    if: (github.event_name == 'repository_dispatch' && github.event.action == 'dispatch_event') || github.event_name != 'repository_dispatch'
+    steps:
+      - name: Setup git user
+        run: |
+          git config --local user.email "example@example.com"
+          git config --local user.name "example"
