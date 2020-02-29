@@ -1,7 +1,10 @@
 name: Gipr
+
 on:
   push:
-    - develop
+    branches:
+      - develop
+
 jobs:
   main:
     name: Build and deploy
