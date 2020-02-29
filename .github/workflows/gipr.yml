@@ -17,12 +17,13 @@ jobs:
         run: git clone -b master --single-branch --depth=1 https://github.com/ress997/hugo-ran.git themes/ran
       - name: Download hugo
         run: |
-          wget "https://github.com/hayashiki/git-issue-pr-release/releases/download/v0.0.11/gipr_linux_amd64.zip"
+          VERSION=$(curl --silent "https://api.github.com/repos/hayashiki/git-issue-pr-release/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
+          wget "https://github.com/hayashiki/git-issue-pr-release/releases/download/v0.0.12/gipr_linux_amd64.zip"
           unzip gipr_linux_amd64.zip
           rm -rf gipr_linux_amd64.zip
       - name: Build
         run: ./gipr_linux_amd64
         env:
-          GITHUB_ENV: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BASE: master
           HEAD: develop
