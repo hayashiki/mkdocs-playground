@@ -18,7 +18,7 @@ jobs:
       - name: Download hugo
         run: |
           wget "https://github.com/hayashiki/git-issue-pr-release/releases/download/v0.0.11/gipr_linux_amd64.zip"
-          tar xzf gipr_linux_amd64.zip
+          unzip xzf gipr_linux_amd64.zip
           rm -rf gipr_linux_amd64.zip
       - name: Build
         run: ./gipr_linux_amd64
