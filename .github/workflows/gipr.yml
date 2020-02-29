@@ -1,0 +1,25 @@
+name: Gipr
+on:
+  push:
+    - develop
+jobs:
+  main:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - name: Download theme
+        run: git clone -b master --single-branch --depth=1 https://github.com/ress997/hugo-ran.git themes/ran
+      - name: Download hugo
+        run: |
+          wget "https://github.com/hayashiki/git-issue-pr-release/releases/download/v0.0.11/gipr_linux_amd64.zip"
+          tar xzf gipr_linux_amd64.zip
+          rm -rf gipr_linux_amd64.zip
+      - name: Build
+        run: ./gipr_linux_amd64
+        env:
+          GITHUB_ENV: ${{ secrets.GITHUB_TOKEN }}
+          BASE: master
+          HEAD: develop

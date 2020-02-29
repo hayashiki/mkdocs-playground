@@ -1,5 +1,13 @@
 site_name: Share Docs
-
 theme:
   name: 'material'
   language: 'ja'
+
+markdown_extensions:
+  - toc:
+      permalink: true
+
+nav:
+  - 'Index': 'index.md'
+  - 'Blog': 'blog.md'
+  - 'PrivacyPolicy': 'privacy-policy.md'
